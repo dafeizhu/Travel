@@ -29,7 +29,41 @@
 * 画廊公共组件拆分与使用
 * 使用transition和slot实现渐隐渐显动画
 * 实现顶部fixed-top渐隐渐显效果
-* 
+* 递归组件实现详情列表
+* 动态的路由配置
+
+## 项目相关的依赖包
+* fastClick: 用来处理移动端<code>click</code>事件 300毫秒延迟
+* stylus: CSS 预处理框架
+* stylus-loader
+* vue-awesome-swiper: 轮播插件
+* axios: 实现<code>ajax</code>
+* better-scroll: scroll插件
+* vuex: 实现数据共享
 
 ## 首页
+
+
+## 城市页
+
+
+## 详情页
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
