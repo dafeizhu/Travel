@@ -70,12 +70,44 @@ computed生命周期中的pages函数，即是分页的函数，使用<code>Math
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/proxyTable.PNG)
 
 ## 城市页
+### 使用<code>router-link</code>实现从首页右上角的城市点击跳转到城市选择页面
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Home-Header.PNG)<br><br>
+做此操作需要在router文件夹下的index.js做路由配置。对<code>path</code>、<code>name</code>和<code>component</code>的声明，并进行<code>import from</code><br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/router-index.PNG)<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/router-index2.PNG)
 
+### List组件
+修改<code>border-topbottom</code>的颜色<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/border-topbottom.PNG)<br><br>
+固定List页面，使用后续使用<code>better-scroll</code>插件实现类似原生APP上下拖动效果<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/class-list.PNG)
+
+### better-scroll插件的使用
+首先，<code>npm install better-scroll --save</code><br><br>
+在HTML模板代码的最外层，再套上一层<code>ref="wrapper"</code>的<code>div</code>，导入插件，并在<code>mouted()</code>生命周期中新建这个DOM引用的实例<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/import-better-scroll.PNG)
+
+### Alphabet组件
+是一个显示在右的<code>a-z</code>字母缩略指引<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Alphabet.PNG)<br><br>
+定义<code>handleTouchStart</code>、<code>handleTouchMove</code>、<code>handleTouchEnd</code>这三个函数来完成手指动态滑动字母表，展示首字母城市列表的功能，其中使用判断状态配合<code>setTimeout</code>来进行函数节流，提升网页性能<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Alphabet-setTimeout.PNG)<br><br>
+
+### 城市页兄弟组件间的传值
+Alphabet组件向List组件传递数据，是<code>Alphabet.vue</code>先将数据传给<code>City.vue</code>，再由<code>City.vue</code>传给<code>List.vue</code>完成的<br><br>
+首先是在Alphabet组件的模板中定义<code>@click="handleLetterClick"</code>，由这个事件向外（父组件）触发一个<code>change</code>事件<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/handeLetterClick.PNG)<br><br>
+紧接着，在City父组件中监听这个<code>change</code>事件，将其带过来的参数保存到父组件的<code>data</code>函数中，再由父组件将这个参数传给List组件<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/City-change.PNG)<br><br>
+父组件中更新数据<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/City-handleLetterChange.PNG)<br><br>
+父组件将更新好的数据传给List组件，子组件在其内部接收参数，从而实现兄弟组件的传值<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/City-List.PNG)
 
 ## 详情页
 
 
-
+## 项目总结：
 
 
 
