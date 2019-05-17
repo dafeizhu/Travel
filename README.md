@@ -52,15 +52,22 @@ Swiper组件是顶部的轮播图，它需要自动播放，我们设置其<code
 computed生命周期中的pages函数，即是分页的函数，使用<code>Math.floor</code>方法向下取整<br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-4.PNG)<br><br>
 首页中为防止页面加载时，轮播区域的抖动效果，我们给包裹轮播图的<code>class="wrapper"</code>添加一段CSS关键代码<br><br>
-![](https://github.com/dafeizhu/Travel/blob/master/imgs/wrapper.PNG)<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/swiper-wrapper.PNG)<br><br>
 <code>width</code>设置为100%展示全图，<code>padding-bottom</code>的取值是图片的高宽比，使图片还未加载时就能够自动撑开页面，防止页面抖动
 
 ### 使用axios获取本地数据
 首先，我们需要在Home的全局组件中导入<code>axios</code><br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-5.PNG)<br><br>
 在Home的全局组件中，我们要现在<code>data</code>函数里定义几个我们要传给子组件的空的数组或字符串，然后通过<code>axios</code>动态获取到数据后，再将数据更新到<code>data</code>中，再通过父组件向子组件传递数据如<code>:list="swiperList"</code>的方式将数据传给子组件，子组件只要在其<code>props</code>中接收一下，就可以使用父组件传过来的数据了，这样我们就可以做到一次ajax请求就能完全展示一个页面<br><br>
-![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-6.PNG)
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-6.PNG)<br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-7.PNG)
+
+### gitignore 设置
+添加<code>staitc/mock</code>，防止被推送到仓库
+
+### 设置 mock数据 开发环境转发代理
+打开<code>config</code>目录下的<code>index.js</code>文件，找到<code>module.exports</code>里的<code>dev</code>下边的<code>proxyTable</code>代理，修改代码如下图后，<code>webpack-dev-server</code>工具会自动将<code>/api</code>替换成<code>/static/mock</code><br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/proxyTable.PNG)
 
 ## 城市页
 
