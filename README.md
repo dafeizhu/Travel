@@ -130,6 +130,52 @@ export default {
 ```
 给用于展示搜索结果的<code>div</code>添加<code>ref="search"</code>就能实现<code>better-scroll</code>在搜索页面上的应用
 
+### 使用vuex实现数据共享
+实现City页面数据传递给Home页面，由于两个组件间并没有公用父级组件，这里我们使用<code>vuex</code>实现数据共享<br><br>
+```npn
+npm install vuex --save
+```
+创建store目录，在其目录下创建<code>index.js</code>、<code>mutations.js</code>、<code>state.js</code>，其中<code>index.js</code>为主入口，
+在其中引入其余两个js文件<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/store-index.PNG)<br><br>
+<code>state.js</code>中存放公用数据<code>city</code>，在<code>main.js</code>根实例中传入<code>state</code><br><br>
+```vue
+import store from './store'
+
+new Vue({
+  el: '#app',
+  router,
+  store, // 传入根实例
+  components: { App },
+  template: '<App/>'
+})
+```
+子组件中，在<code>mouted</code>函数里，使用<code>...mapState(['city'])</code>扩展运算符的形式将<code>store.state.city</code>映射<code>this.city</code>中，然后直接在<code>template</code>中使用<code>{{this.city}}</code><br><br>
+同样的，<code>Search.vue</code>中定义的<code>handleCityClick</code>函数中，也是使用<code>...mapMutations(['changeCity'])</code>扩展运算符的形式将<code>mutations.js</code>中的<code>changeCity</code>方法绑定到<code>this.changeCity</code><br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/handleCityClick.PNG)
+  
+### localStorage
+在<code>state.js</code>中，使用<code>localStorage</code>实现城市保存功能，考虑到用户可能使用隐身模式或者禁用<code>localStorage</code>，我们给代码加上<code>try catch</code>异常捕获优化<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/state.PNG)
+
+### keep-alive优化
+当查看<code>network</code>时候，可以看到从首页到城市选择页切换过程中每次切换都会发送<code>ajax</code>请求。所以我们对此进行优化<br><br>
+在<code>App.vue</code>中给`<router-view/>`外部添加一个`<keep-alive>`标签。其含义是路由的内容被加载过一次之后，就把路由的内容放置到内存中，下一次再使用路由的时候，无需重新加载组件、执行钩子函数，只需要从内存中拿出以前的内容显示就可以了<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/App.PNG)<br><br>
+我们在`keep-alive`标签上添加了`exclude="Detail"`，目的是使后边详情页面每进入一次就发送一个`ajax`请求，后边详情页会做详细介绍<br><br>
+同时，使用`keep-alive`会增加一个新的vue生命周期`activated`，我们在其中增加一层判断，只有当`city`发生改变时，才执行`getHomeInfo`函数发送`ajax`请求<br><br>
+```vue
+getHomeInfo () {
+  axios.get('/api/index.json?city=' + this.city)
+    .then(this.getHomeInfoSucc)
+},
+activated () {
+  if (this.lastCity !== this.city) {
+    this.lastCity = this.city
+    this.getHomeInfo()
+  }
+}
+```
 
 ## 详情页
 
