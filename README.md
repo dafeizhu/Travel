@@ -83,7 +83,9 @@ computed生命周期中的pages函数，即是分页的函数，使用<code>Math
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/class-list.PNG)
 
 ### better-scroll插件的使用
-首先，<code>npm install better-scroll --save</code><br><br>
+```npm
+npm install better-scroll --save
+```
 在HTML模板代码的最外层，再套上一层<code>ref="wrapper"</code>的<code>div</code>，导入插件，并在<code>mouted()</code>生命周期中新建这个DOM引用的实例<br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/import-better-scroll.PNG)
 
