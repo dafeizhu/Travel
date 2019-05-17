@@ -106,6 +106,31 @@ Alphabet组件向List组件传递数据，是<code>Alphabet.vue</code>先将数�
 父组件将更新好的数据传给List组件，子组件在其内部接收参数，从而实现兄弟组件的传值<br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/City-List.PNG)
 
+### Search搜索功能实现
+在<code>input</code>中做<code>v-model="keyword"</code>的双向绑定<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Search-v-model.PNG)<br><br>
+data函数中定义<code>keyword</code>、<code>list</code>、<code>timer</code>，使用监听器<code>watch</code>监听<code>keyword</code>的变化，并使用节流函数进行优化<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Search-watch.PNG)
+
+### 输入逻辑优化
+当输入框的内容为空时，清空<code>list</code>数组<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Search-keyword-null.PNG)<br><br>
+在<code>computed</code>函数中定义一个<code>hasNoData</code>的函数，使用<code>v-show="hasNoData"</code>将其绑定到一个搜索结果为空则展示的<code>li</code>标签上，实现当<code>list</code>为空时，页面能够展示“没有找到匹配数据”<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/Search-content.PNG)
+
+### search-item添加better-scroll
+```vue
+import Ascroll from 'better-scroll'
+export default {
+  name: 'CitySearch',
+  mounted () {
+    this.scroll = new Ascroll(this.$refs.search)
+  }
+}
+```
+给用于展示搜索结果的<code>div</code>添加<code>ref="search"</code>就能实现better-scroll在搜索页面上的应用
+
+
 ## 详情页
 
 
