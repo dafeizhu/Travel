@@ -128,7 +128,7 @@ export default {
   }
 }
 ```
-给用于展示搜索结果的<code>div</code>添加<code>ref="search"</code>就能实现better-scroll在搜索页面上的应用
+给用于展示搜索结果的<code>div</code>添加<code>ref="search"</code>就能实现<code>better-scroll</code>在搜索页面上的应用
 
 
 ## 详情页
