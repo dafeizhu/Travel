@@ -52,7 +52,7 @@ Swiper组件是顶部的轮播图，它需要自动播放，我们设置其<code
 computed生命周期中的pages函数，即是分页的函数，使用<code>Math.floor</code>方法向下取整<br><br>
 ![](https://github.com/dafeizhu/Travel/blob/master/imgs/home-4.PNG)<br><br>
 首页中为防止页面加载时，轮播区域的抖动效果，我们给包裹轮播图的<code>class="wrapper"</code>添加一段CSS关键代码<br><br>
-![](https://github.com/dafeizhu/Travel/blob/master/imgs/wrapper.PNG)<br><br>
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/swiper-wrapper.PNG)<br><br>
 <code>width</code>设置为100%展示全图，<code>padding-bottom</code>的取值是图片的高宽比，使图片还未加载时就能够自动撑开页面，防止页面抖动
 
 ### 使用axios获取本地数据
