@@ -67,7 +67,7 @@ computed生命周期中的pages函数，即是分页的函数，使用<code>Math
 
 ### 设置 mock数据 开发环境转发代理
 打开<code>config</code>目录下的<code>index.js</code>文件，找到<code>module.exports</code>里的<code>dev</code>下边的<code>proxyTable</code>代理，修改代码如下图后，<code>webpack-dev-server</code>工具会自动将<code>/api</code>替换成<code>/static/mock</code><br><br>
-![](https://github.com/dafeizhu/Travel/blob/master/imgs/swiper-wrapper.PNG)
+![](https://github.com/dafeizhu/Travel/blob/master/imgs/proxyTable.PNG)
 
 ## 城市页
 
